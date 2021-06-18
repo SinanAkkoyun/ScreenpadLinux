@@ -13,7 +13,7 @@ enable_screenpad.sh
 set_screenpad_brightness.sh
 add_screenpad_brightness.sh
 set_screenpad_brightness.sh
-permissions_screenpad.sh
+startup_screenpad_service.sh
 
 RUN:
 chmod 755 /opt/screenpad/*
@@ -34,7 +34,7 @@ PASTE:
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/opt/screenpad/permissions_screenpad.sh
+ExecStart=/opt/screenpad/startup_screenpad_service.sh
 
 [Install]
 WantedBy=multi-user.target
