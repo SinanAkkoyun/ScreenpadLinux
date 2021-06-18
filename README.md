@@ -8,7 +8,7 @@ If something does not work, join this Discord server: https://www.discord.gg/5uX
 When my script does not work for your model, it can very likely just be because of my scripts targeting the wrong display adapter name, just take a look in the Discord Server under useful-links!
 It enabled me to even write this
 
-INSTALL:
+INSTALL BEFOREHAND:
 https://github.com/Plippo/asus-wmi-screenpad
 Also install NVIDIA drivers and optimus-manager
 
@@ -20,25 +20,22 @@ echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
 
 Does your screenpads backlight light up after a few seconds (for me, my screen was black but my backlight lit up)? If yes, AWESOME, you are on the right track! If not, my scripts may not work for you, look for the discord linked below.
 
-Create a new directory for your new scripts:
+# Put scripts into place
+
+1. Create a new directory wherever you like (mine is ~/github/)
+2. Clone this repo there:
 ```bash
-mkdir /opt/screenpad
-cd /opt/screenpad
+git clone https://github.com/SinanAkkoyun/ScreenpadLinux
+```
+3. Create a new directory for your new scripts but stay in the current directory:
+```bash
+sudo mkdir /opt/screenpad
 ```
 
-Extract the following files from this repo into /opt/screenpad:
+Copy everything into /opt/screenpad and give proper permissions:
 ```bash
-enable_screenpad.sh
-disable_screenpad.sh
-toggle_screenpad.sh
-set_screenpad_brightness.sh
-add_screenpad_brightness.sh
-startup_screenpad_service.sh
-```
-
-Give all of them permissions to run:
-```bash
-chmod 755 /opt/screenpad/*
+sudo cp * /opt/screenpad/
+sudo chmod 755 /opt/screenpad/*
 ```
 
 Add the following line to /usr/share/X11/xorg.conf.d/10-nvidia*.conf after Driver "nvidia" (replace the old Option line):
