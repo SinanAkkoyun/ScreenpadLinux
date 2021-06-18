@@ -26,6 +26,7 @@ if [ $bright -eq 1 ]
 then
 	# uncomment if you want to disable your screenpad by setting it to low brightness
 	# bright="0"
+	echo "Already at minimum brightness"
 fi
 
 echo $bright
