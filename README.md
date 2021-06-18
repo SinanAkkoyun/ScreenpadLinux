@@ -6,12 +6,12 @@ https://github.com/Plippo/asus-wmi-screenpad
 
 RUN:
 echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
-# Does your screenpad light up after a few seconds? If yes, AWESOME, you are on the right track!
+//Does your screenpad light up after a few seconds? If yes, AWESOME, you are on the right track!
 
 RUN: (optional, enables all users brightness control)
 sudo chmod a+w '/sys/class/leds/asus::screenpad/brightness'
-# chmod has to be executed again after every reboot, so it is advisable to add the call to a boot script, e.g. /etc/rc.local.
-# from now on echo 255 | tee '/sys/class/leds/asus::screenpad/brightness' will be sufficient, no sudo required
+//chmod has to be executed again after every reboot, so it is advisable to add the call to a boot script, e.g. /etc/rc.local.
+//from now on echo 255 | tee '/sys/class/leds/asus::screenpad/brightness' will be sufficient, no sudo required
 
 ADD:
 Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoEdidDFPMaxSizeCheck,NoVertRefreshCheck,NoWidthAlignmentCheck,NoEdidMaxPClkCheck,NoMaxSizeCheck"
@@ -31,7 +31,7 @@ chmod +x /opt/screenpad/*
 
 
 MAKE SURE TO SET OPTIMUS TO NVIDIA BEFORE RUNNING
-# optimus-manager --switch nvidia --no-confirm
+//optimus-manager --switch nvidia --no-confirm
 
 RUN:
 chmod +x enable_screenpad.sh
