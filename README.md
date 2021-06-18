@@ -4,14 +4,14 @@ My solution to make the Screenpad work! (UX580GE and probably all models with tr
 # Installation
 
 DISCLAIMER
-If something does not work, join this Discord server: discord.gg/5uXFfsV
+If something does not work, join this Discord server: https://www.discord.gg/5uXFfsV
 It enabled me to even write this
 
 INSTALL:
 https://github.com/Plippo/asus-wmi-screenpad
 Also install NVIDIA drivers and optimus-manager
 
-# Initial test
+# Compatibility test
 RUN:
 echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
 
@@ -46,6 +46,7 @@ ModulePath "/usr/lib/nvidia/xorg"
 ModulePath "/usr/lib/xorg/modules"
 EndSection
 
+# Autostart
 Now, add /opt/screenpad/startup_screenpad_service.sh to your Autostart of your distro.
 Put /opt/screenpad/startup_screenpad_service.sh to "after log in"
 And /opt/screenpad/disable_screenpad.sh to "after log out"
@@ -61,33 +62,50 @@ Your configuration should look like this:
 Add these shortcuts to your system but do not activate them until the last step!:
 shift+MonitorBrightnessUp  ->  /opt/screenpad/add_screenpad_brightness.sh +12
 shift+MonitorBrightnessDown -> /opt/screenpad/add_screenpad_brightness.sh -12
+shift+ToggleTouchpad     ->    /opt/screenpad/toggle_screenpad.sh
 
-# Testing
+I put them into a custom group called "Screenpad" in KDE:
+![image](https://user-images.githubusercontent.com/43215895/122568580-6fa91f80-d039-11eb-8379-0e2c1361b0dd.png)
+
+# Reboot
+
+Now reboot your system.
+
+# NVIDIA Optimus
 Set your Optimus to NVIDIA. This internally activates the NVIDIA GPU and connects the screenpad. It might be that your model does not have a dedicated NVIDIA GPU, in that case join this discord for assistance: discord.gg/5uXFfsV
 optimus-manager --switch nvidia --no-confirm
 
-RUN:
-chmod +x enable_screenpad.sh
-./enable_screenpad.sh
+You HAVE TO set it to NVIDIA before using the screenpad, otherwise it won't work. I set my laptop to automatically boot into NVIDIA.
 
-et voilà
+# START SCREENPAD
 
-# Controls
+You are done! Yay! In order to enable your screenpad, simply press your custom shortcut (in my case it is SHIFT+Fn+F6).
+You should get a notification and after about 5 seconds your screenpad should turn on and just work!
 
-change brightness by /opt/screenpad/add_screenpad_brightness.sh +12 or -12 (12 corresponds to about 5% brightness level)
+# Controls (CLI, for your own custom scripts)
 
-when you manually set the brightness to 0 (/opt/screenpad/set_screenpad_brightness.sh 0), the laptop automatically disconnects the screenpad.
-To activate it again you don't need to run enable_screenpad.sh again! Just set the brightness to something above 0!
+Brightness controll (relative):
+/opt/screenpad/add_screenpad_brightness.sh +12 or -12 (12 corresponds to about 5% brightness level)
+Brightness controll (absolute):
+/opt/screenpad/set_screenpad_brightness.sh 255 (0-255)
+NOTE: when you set the brightness to 0, the laptop automatically disconnects the screenpad.
 
-You can manually control the brightness via: echo 255 | tee '/sys/class/leds/asus::screenpad/brightness'
+Toggle screenpad on/off:
+/opt/screenpad/toggle_screenpad.sh
+/opt/screenpad/enable_screenpad.sh
+/opt/screenpad/disable_screenpad.sh
 
-# TODO: implement enable_screenpad.sh only after optimus NVIDIA has been enabled on login!!!
 
 (l8r I will write a completely automated script)
 
 
+# Motivation
 
+I struggled to get this to work for about a whole year now. Now I FINALLY got it to work, and it is beautiful.
+We don't buy this hardware just to not have it working in linux.
+I hope I saved you months or years of struggle with this. Have fun!
 
-resources and big thanks to:
-https://gitlab.com/screenpad-linux/ux480f/-/blob/master/screenpad.sh
+Resources and big thanks to:
 https://github.com/Plippo/asus-wmi-screenpad
+https://www.discord.gg/5uXFfsV
+https://gitlab.com/screenpad-linux/ux480f/-/blob/master/screenpad.sh
