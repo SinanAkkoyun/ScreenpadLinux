@@ -58,7 +58,7 @@ EndSection
 
 # Autostart
 Now, add /opt/screenpad/startup_screenpad_service.sh to your Autostart of your distro.
-Put /opt/screenpad/startup_screenpad_service.sh to "after log in" (as sudo!)
+Put /opt/screenpad/startup_screenpad_service.sh to "after log in"
 And /opt/screenpad/disable_screenpad.sh to "after log out"
 
 I will show the process for KDE:
@@ -67,13 +67,6 @@ Choose /opt/screenpad/startup_screenpad_service.sh
 Do the same but on log out with /opt/screenpad/disable_screenpad.sh
 Your configuration should look like this:
 ![image](https://user-images.githubusercontent.com/43215895/122565203-bbf26080-d035-11eb-9a32-c2ae254025f5.png)
-
-Actually right now in order to run it as root you need to supply this to "Login script":
-```bash
-echo "yourpassword" | sudo -S /opt/screenpad/startup_screenpad_service.sh
-```
-
-I know this is insecure, do a systemd service if you don't want to do it this way.
 
 # Shortcuts
 Add these shortcuts to your system but do not activate them until the last step!:
