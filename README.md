@@ -26,6 +26,7 @@ Does your screenpads backlight light up after a few seconds (for me, my screen w
 2. Clone this repo there:
 ```bash
 git clone https://github.com/SinanAkkoyun/ScreenpadLinux
+cp ScreenpadLinux
 ```
 3. Create a new directory for your new scripts but stay in the current directory:
 ```bash
