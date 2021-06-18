@@ -19,6 +19,9 @@ if [[ "$optimus_mode" == *"integrated"* ]]; then
 	echo "Integrated, on your model this will not work."
 	notify-send "Screenpad" "Screenpad not enabled, please switch to Hybrid or NVIDIA in Optimus Manager."
 	exit 1
+
+	# If this will work on your model, uncomment following line:
+	# screenpad_output=$screenpad_intel
 fi
 
 notify-send 'Screenpad' 'Enabling Screenpad...'
