@@ -1,6 +1,9 @@
 # ASUS Screenpad on Linux
 My solution to make the Screenpad work! (UX580GE and probably all models with trackpad screenpad)
 
+# TODO: /home/sinan/.screenpad insteal of /opt/screenpad/
+# TODO: Add model support and lookup table
+
 # Installation
 
 DISCLAIMER
@@ -82,12 +85,7 @@ I put them into a custom group called "Screenpad" in KDE:
 Now reboot your system.
 
 # NVIDIA Optimus
-Set your Optimus to NVIDIA. This internally activates the NVIDIA GPU and connects the screenpad. It might be that your model does not have a dedicated NVIDIA GPU, I am working on implementing it.
-```bash
-optimus-manager --switch nvidia --no-confirm
-```
-
-You HAVE TO set it to NVIDIA before using the screenpad, otherwise it won't work. I set my laptop to automatically boot into NVIDIA. (I am working on integrated)
+This script automagically detects if the NVIDIA or hybrid or integrated is enabled!
 
 # Start Screenpad
 
