@@ -5,20 +5,6 @@ INSTALL:
 https://github.com/Plippo/asus-wmi-screenpad
 
 RUN:
-echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
-//Does your screenpad light up after a few seconds? If yes, AWESOME, you are on the right track!
-
-RUN: (optional, enables all users brightness control)
-sudo chmod a+w '/sys/class/leds/asus::screenpad/brightness'
-//chmod has to be executed again after every reboot, so it is advisable to add the call to a boot script, e.g. /etc/rc.local.
-//from now on echo 255 | tee '/sys/class/leds/asus::screenpad/brightness' will be sufficient, no sudo required
-
-ADD:
-Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoEdidDFPMaxSizeCheck,NoVertRefreshCheck,NoWidthAlignmentCheck,NoEdidMaxPClkCheck,NoMaxSizeCheck"
-add to /usr/share/X11/xorg.conf.d/10-nvidia*.conf AFTER: Driver "nvidia"
-
-
-RUN:
 mkdir /opt/screenpad
 cd /opt/screenpad
 
@@ -27,11 +13,43 @@ enable_screenpad.sh
 set_screenpad_brightness.sh
 add_screenpad_brightness.sh
 set_screenpad_brightness.sh
+permissions_screenpad.sh
 
 RUN:
 chmod 755 /opt/screenpad/*
 touch /tmp/screenpad_brightness
 chmod 755 /tmp/screenpad_brightness
+
+RUN:
+echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
+//Does your screenpad light up after a few seconds? If yes, AWESOME, you are on the right track!
+
+RUN: (optional, enables all users brightness control)
+sudo chmod a+w '/sys/class/leds/asus::screenpad/brightness'
+//chmod has to be executed again after every reboot, so it is advisable to add the call to a boot script, e.g. /etc/rc.local.
+If you are running Garuda Linux (systemd), create a new service like so (replace vim with your editor):
+SPOILER
+sudo vim /etc/systemd/system/screenpad.service
+PASTE:
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/screenpad/permissions_screenpad.sh
+
+[Install]
+WantedBy=multi-user.target
+
+RUN:
+systemctl enable screenpad.service
+systemctl start screenpad.service
+
+//does it work? TODO
+
+From now on echo 255 | tee '/sys/class/leds/asus::screenpad/brightness' will be sufficient, no sudo required
+
+ADD:
+Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoEdidDFPMaxSizeCheck,NoVertRefreshCheck,NoWidthAlignmentCheck,NoEdidMaxPClkCheck,NoMaxSizeCheck"
+add to /usr/share/X11/xorg.conf.d/10-nvidia*.conf AFTER: Driver "nvidia"
 
 
 MAKE SURE TO SET OPTIMUS TO NVIDIA BEFORE RUNNING
