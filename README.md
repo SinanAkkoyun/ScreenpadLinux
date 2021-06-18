@@ -12,31 +12,37 @@ https://github.com/Plippo/asus-wmi-screenpad
 Also install NVIDIA drivers and optimus-manager
 
 # Compatibility test
-RUN:
-echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
+In order to test compatibility, run this:
+> echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
 
-Does your screenpads backlight light up after a few seconds (for me, my screen was black but my backlight lit up)? If yes, AWESOME, you are on the right track! If not, maybe my scripts do work, maybe not, but you can try to proceed.
+Does your screenpads backlight light up after a few seconds (for me, my screen was black but my backlight lit up)? If yes, AWESOME, you are on the right track! If not, my scripts may not work for you, look for the discord linked below.
 
-RUN:
-mkdir /opt/screenpad
-cd /opt/screenpad
+Create a new directory for your new scripts:
+> mkdir /opt/screenpad
+> cd /opt/screenpad
 
-DOWNLOAD (into /opt/screenpad):
+Extract the following files from this repo into /opt/screenpad:
+```bash
 enable_screenpad.sh
 disable_screenpad.sh
 toggle_screenpad.sh
 set_screenpad_brightness.sh
 add_screenpad_brightness.sh
 startup_screenpad_service.sh
+```
 
-RUN:
+Give all of them permissions to run:
+```bash
 chmod 755 /opt/screenpad/*
+```
 
-ADD:
+Add the following line to /usr/share/X11/xorg.conf.d/10-nvidia*.conf after Driver "nvidia" (replace the old Option line):
+```bash
 Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoEdidDFPMaxSizeCheck,NoVertRefreshCheck,NoWidthAlignmentCheck,NoEdidMaxPClkCheck,NoMaxSizeCheck"
-add to /usr/share/X11/xorg.conf.d/10-nvidia*.conf AFTER: Driver "nvidia"
+```
 
 This is my /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf for reference:
+```bash
 Section "OutputClass"
 Identifier "nvidia"
 MatchDriver "nvidia-drm"
@@ -45,6 +51,7 @@ Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClk
 ModulePath "/usr/lib/nvidia/xorg"
 ModulePath "/usr/lib/xorg/modules"
 EndSection
+```
 
 # Autostart
 Now, add /opt/screenpad/startup_screenpad_service.sh to your Autostart of your distro.
@@ -60,9 +67,9 @@ Your configuration should look like this:
 
 # Shortcuts
 Add these shortcuts to your system but do not activate them until the last step!:
-shift+MonitorBrightnessUp  ->  /opt/screenpad/add_screenpad_brightness.sh +12
-shift+MonitorBrightnessDown -> /opt/screenpad/add_screenpad_brightness.sh -12
-shift+ToggleTouchpad     ->    /opt/screenpad/toggle_screenpad.sh
+> shift+MonitorBrightnessUp  ->  /opt/screenpad/add_screenpad_brightness.sh +12
+> shift+MonitorBrightnessDown -> /opt/screenpad/add_screenpad_brightness.sh -12
+> shift+ToggleTouchpad     ->    /opt/screenpad/toggle_screenpad.sh
 
 I put them into a custom group called "Screenpad" in KDE:
 ![image](https://user-images.githubusercontent.com/43215895/122568580-6fa91f80-d039-11eb-8379-0e2c1361b0dd.png)
@@ -73,9 +80,11 @@ Now reboot your system.
 
 # NVIDIA Optimus
 Set your Optimus to NVIDIA. This internally activates the NVIDIA GPU and connects the screenpad. It might be that your model does not have a dedicated NVIDIA GPU, in that case join this discord for assistance: discord.gg/5uXFfsV
+```bash
 optimus-manager --switch nvidia --no-confirm
+```
 
-You HAVE TO set it to NVIDIA before using the screenpad, otherwise it won't work. I set my laptop to automatically boot into NVIDIA.
+You HAVE TO set it to NVIDIA before using the screenpad, otherwise it won't work. I set my laptop to automatically boot into NVIDIA. (I am working on integrated)
 
 # Start Screenpad
 
@@ -85,17 +94,19 @@ You can press the same shortcut in order to disable it again!
 
 # Controls (CLI, for your own custom scripts)
 
-Brightness controll (relative):
-/opt/screenpad/add_screenpad_brightness.sh +12 or -12 (12 corresponds to about 5% brightness level)
-Brightness controll (absolute):
+```bash
+# Brightness controll (relative):
+/opt/screenpad/add_screenpad_brightness.sh +12/-12
+# (12 corresponds to about 5% brightness level)
+# Brightness controll (absolute):
 /opt/screenpad/set_screenpad_brightness.sh 255 (0-255)
-NOTE: when you set the brightness to 0, the laptop automatically disconnects the screenpad.
+# NOTE: when you set the brightness to 0, the laptop automatically disconnects the screenpad.
 
-Toggle screenpad on/off:
+# Toggle screenpad on/off:
 /opt/screenpad/toggle_screenpad.sh
 /opt/screenpad/enable_screenpad.sh
 /opt/screenpad/disable_screenpad.sh
-
+```
 
 (l8r I will write a completely automated script)
 
