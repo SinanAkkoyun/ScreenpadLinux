@@ -21,6 +21,10 @@ if [ 1 -gt $bright ]
 then
 	bright="1"
 fi
+if [ $bright -eq 1 ]
+then
+bright="0"
+fi
 
 echo $bright
 /opt/screenpad/set_screenpad_brightness.sh $bright
