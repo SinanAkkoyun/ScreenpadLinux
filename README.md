@@ -13,7 +13,7 @@ https://github.com/Plippo/asus-wmi-screenpad
 Also install NVIDIA drivers and optimus-manager
 
 # Compatibility test
-In order to test compatibility, run this:
+In order to test compatibility AFTER installing asus-wmi-screenpad, run this:
 ```bash
 echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
 ```
