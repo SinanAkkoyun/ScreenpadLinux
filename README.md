@@ -77,10 +77,11 @@ optimus-manager --switch nvidia --no-confirm
 
 You HAVE TO set it to NVIDIA before using the screenpad, otherwise it won't work. I set my laptop to automatically boot into NVIDIA.
 
-# START SCREENPAD
+# Start Screenpad
 
 You are done! Yay! In order to enable your screenpad, simply press your custom shortcut (in my case it is SHIFT+Fn+F6).
 You should get a notification and after about 5 seconds your screenpad should turn on and just work!
+You can press the same shortcut in order to disable it again!
 
 # Controls (CLI, for your own custom scripts)
 
