@@ -41,8 +41,20 @@ chmod +x enable_screenpad.sh
 
 et voilà
 
+# Controls
+
+change brightness by /opt/screenpad/add_screenpad_brightness.sh +12 or -12 (12 corresponds to about 5% brightness level)
+
+when you manually set the brightness to 0 (/opt/screenpad/set_screenpad_brightness.sh 0), the laptop automatically disconnects the screenpad.
+To activate it again you don't need to run enable_screenpad.sh again! Just set the brightness to something above 0!
+
+# TODO: implement enable_screenpad.sh only after optimus NVIDIA has been enabled
+
 
 # TODO: write about shortcuts
+you can add shortcuts:
+shift+MonitorBrightnessUp  ->  /opt/screenpad/add_screenpad_brightness.sh +12
+shift+MonitorBrightnessDown -> /opt/screenpad/add_screenpad_brightness.sh -12
 
 (l8r I will write a completely automated script)
 
