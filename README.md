@@ -5,6 +5,7 @@ My solution to make the Screenpad work! (UX580GE and probably all models with tr
 
 DISCLAIMER
 If something does not work, join this Discord server: https://www.discord.gg/5uXFfsV
+When my script does not work for your model, it can very likely just be because of my scripts targeting the wrong display adapter name, just take a look in the Discord Server under useful-links!
 It enabled me to even write this
 
 INSTALL:
@@ -36,7 +37,7 @@ startup_screenpad_service.sh
 ```
 
 Give all of them permissions to run:
-```bash
+```sh
 chmod 755 /opt/screenpad/*
 ```
 
@@ -83,8 +84,8 @@ I put them into a custom group called "Screenpad" in KDE:
 Now reboot your system.
 
 # NVIDIA Optimus
-Set your Optimus to NVIDIA. This internally activates the NVIDIA GPU and connects the screenpad. It might be that your model does not have a dedicated NVIDIA GPU, in that case join this discord for assistance: discord.gg/5uXFfsV
-```bash
+Set your Optimus to NVIDIA. This internally activates the NVIDIA GPU and connects the screenpad. It might be that your model does not have a dedicated NVIDIA GPU, I am working on implementing it.
+```sh
 optimus-manager --switch nvidia --no-confirm
 ```
 
@@ -98,10 +99,11 @@ You can press the same shortcut in order to disable it again!
 
 # Controls (CLI, for your own custom scripts)
 
-```bash
+```sh
 # Brightness controll (relative):
 /opt/screenpad/add_screenpad_brightness.sh +12/-12
 # (12 corresponds to about 5% brightness level)
+
 # Brightness controll (absolute):
 /opt/screenpad/set_screenpad_brightness.sh 255 (0-255)
 # NOTE: when you set the brightness to 0, the laptop automatically disconnects the screenpad.
