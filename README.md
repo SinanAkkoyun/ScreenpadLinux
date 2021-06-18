@@ -16,8 +16,6 @@ startup_screenpad_service.sh
 
 RUN:
 chmod 755 /opt/screenpad/*
-touch /tmp/screenpad_brightness
-chmod 755 /tmp/screenpad_brightness
 
 RUN:
 echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
