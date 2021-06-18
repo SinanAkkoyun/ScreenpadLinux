@@ -29,7 +29,9 @@ add_screenpad_brightness.sh
 set_screenpad_brightness.sh
 
 RUN:
-chmod +x /opt/screenpad/*
+chmod 755 /opt/screenpad/*
+touch /tmp/screenpad_brightness
+chmod 755 /tmp/screenpad_brightness
 
 
 MAKE SURE TO SET OPTIMUS TO NVIDIA BEFORE RUNNING
