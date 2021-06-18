@@ -30,4 +30,13 @@ then
 fi
 
 echo $bright
-/opt/screenpad/set_screenpad_brightness.sh $bright
+
+ison=$(cat /opt/screenpad/screenpad_on)
+if [ -z "$ison" ]
+then
+ison=false
+fi
+
+if [ "$ison" = true ]; then
+	/opt/screenpad/set_screenpad_brightness.sh $bright
+fi
