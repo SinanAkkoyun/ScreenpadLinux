@@ -12,7 +12,6 @@ DOWNLOAD (into /opt/screenpad):
 enable_screenpad.sh
 set_screenpad_brightness.sh
 add_screenpad_brightness.sh
-set_screenpad_brightness.sh
 startup_screenpad_service.sh
 
 RUN:
