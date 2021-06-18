@@ -13,13 +13,17 @@ Also install NVIDIA drivers and optimus-manager
 
 # Compatibility test
 In order to test compatibility, run this:
-> echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
+```bash
+echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
+```
 
 Does your screenpads backlight light up after a few seconds (for me, my screen was black but my backlight lit up)? If yes, AWESOME, you are on the right track! If not, my scripts may not work for you, look for the discord linked below.
 
 Create a new directory for your new scripts:
-> mkdir /opt/screenpad
-> cd /opt/screenpad
+```bash
+mkdir /opt/screenpad
+cd /opt/screenpad
+```
 
 Extract the following files from this repo into /opt/screenpad:
 ```bash
