@@ -37,7 +37,7 @@ startup_screenpad_service.sh
 ```
 
 Give all of them permissions to run:
-```sh
+```bash
 chmod 755 /opt/screenpad/*
 ```
 
@@ -85,7 +85,7 @@ Now reboot your system.
 
 # NVIDIA Optimus
 Set your Optimus to NVIDIA. This internally activates the NVIDIA GPU and connects the screenpad. It might be that your model does not have a dedicated NVIDIA GPU, I am working on implementing it.
-```sh
+```bash
 optimus-manager --switch nvidia --no-confirm
 ```
 
@@ -99,7 +99,7 @@ You can press the same shortcut in order to disable it again!
 
 # Controls (CLI, for your own custom scripts)
 
-```sh
+```bash
 # Brightness controll (relative):
 /opt/screenpad/add_screenpad_brightness.sh +12/-12
 # (12 corresponds to about 5% brightness level)
