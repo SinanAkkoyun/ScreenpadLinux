@@ -6,10 +6,15 @@ echo "Detected user: $theuser"
 echo -e "Updating Screenpad... (Making backup to backup_update/)"
 cd ~/.screenpad/
 rm -f -r backup_update
-cp * backup_update/
+mv -f * backup_update/
 
 echo -e "Git pulling..."
 git pull
+
+touch ~/.screenpad/screenpad_on
+touch ~/.screenpad/screenpad_brightness
+chmod a+x screenpad_on
+chmod a+x screenpad_brightness
 
 cd ScreenpadLinux
 

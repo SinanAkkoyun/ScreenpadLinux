@@ -1,7 +1,5 @@
 #!/bin/bash
 
-touch /home/youruser/.screenpad/screenpad_on
-
 ison=$(cat /home/youruser/.screenpad/screenpad_on)
 if [ -z "$ison" ]
 then

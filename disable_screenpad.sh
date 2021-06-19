@@ -1,7 +1,5 @@
 #!/bin/sh
 
-touch /home/youruser/.screenpad/screenpad_on
-
 /home/youruser/.screenpad/ScreenpadLinux/set_screenpad_brightness.sh 0
 
 # xrandr display adapters connected to Screenpad, adjust for your model (current model: UX580GE)

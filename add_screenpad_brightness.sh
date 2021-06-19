@@ -1,7 +1,5 @@
 #!/bin/bash
 
-touch /home/youruser/.screenpad/screenpad_brightness
-
 # $1 equals to the first argument (12 equals 5%, range = 0-255)
 incr=$1
 
