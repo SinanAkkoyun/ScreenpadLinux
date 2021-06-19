@@ -77,6 +77,9 @@ echo -e "\nCool! Last step is to create a new systemd service that gives you per
 echo -e "Updating systemd service file screenpad.service..."
 sudo systemctl stop screenpad.service
 sudo rm -f /etc/systemd/system/screenpad.service
+theuser=$(whoami)
+echo "Detected user: $theuser"
+sed -i "s/youruser/$theuser/g" screenpad.service
 sudo cp screenpad.service /etc/systemd/system/
 
 echo -e "Reloading systemctl daemon"
