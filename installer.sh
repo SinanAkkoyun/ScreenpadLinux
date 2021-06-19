@@ -31,32 +31,33 @@ mkdir ~/.screenpad
 cd ~/.screenpad
 
 echo -e "\nNow I am going to clone all scripts into here. I will make a backup of the old repo."
-mv ScreenpadLinux backup
+rm -f -r backup_all
+mv ScreenpadLinux backup_all
 git clone https://github.com/SinanAkkoyun/ScreenpadLinux
 
 echo -e "\nDone! Your scripts are now in place."
+
 cd ~/.screenpad/ScreenpadLinux
 
 echo -e "Setting permissions to executable..."
 chmod a+x *
 echo -e "Done!"
 
-echo -e "\nNow we will configure shortcuts. This script will only automatically configure shortcuts for KDE. Do you want me to add new shortcuts automatically (Yes) or do you want to manually add them later (Skip)? WARNING: If you already did this step, we advise you do skip it, otherwise you will import these shortcuts again."
-select yn in "Yes" "Skip"; do
+echo -e "Now we need to edit some files in order to make your screenpad work on NVIDIA mode. Do you have the nvidia drivers installed and want to make them work with the screenpad? (Yes RECOMMENDED), (No) if you explicitly do not want NVIDIA support."
+select yn in "Yes" "No"; do
     case $yn in
-        Yes ) 
-		if [ -f "/usr/share/khotkeys/screenpad_shortcuts.khotkeys" ];
-		then
-			echo -e "Shortcuts already exist. Continuing..."
-		else
-			echo -e "I will now need your sudo super powers."
-			sudo cp ~/.screenpad/ScreenpadLinux/screenpad_shortcuts.khotkeys /usr/share/khotkeys/
-			echo -e "Copied screenpad_shortcuts.khotkeys into place. Changes occur after reboot."
-		fi
+        Yes )
+	       	echo -e "Copying a backup of your /usr/share/X11/xorg.conf.d/10-nvidia*.conf into ~/.screenpad/"
+		cp /usr/share/X11/xorg.conf.d/10-nvidia*.conf ~/.screenpad/
+		echo -e "Editing NVIDIA config to let the screenpad have it's correct resolution..."
+		sudo sed -i '/Option/c\	Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoEdidDFPMaxSizeCheck,NoVertRefreshCheck,NoWidthAlignmentCheck,NoEdidMaxPClkCheck,NoMaxSizeCheck"' /usr/share/X11/xorg.conf.d/10-nvidia*.conf
+		echo -e "Done!"
 		break
 		;;
-        Skip ) echo -e "In order to add your own shortcuts, you need to know how to use the scripts. For adding/subtracting brightness please set this as your execution command for brightness control: \"~/.screenpad/ScreenpadLinux/add_screenpad_brightness.sh +12/-12\". 12 roughly equals to 5%, because you can set values from 0-255.\nIn order to set the brightness to an absolute value, do \"~/.screenpad/ScreenpadLinux/set_screenpad_brightness.sh 255\".\nIn order to toggle the screenpad, do \"~/.screenpad/ScreenpadLinux/toggle_screenpad.sh\"\nYou can also find this info on my GitHub page."; break;;
+        No ) echo -e "Keep in mind that you can not use the screenpad in NVIDIA mode."; break;;
     esac
 done
 
-echo -e "\nTEST"
+echo -e "\nNow we need to edit some files..."
+
+
