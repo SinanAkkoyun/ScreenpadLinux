@@ -43,7 +43,21 @@ echo -e "Setting permissions to executable..."
 chmod a+x *
 echo -e "Done!"
 
-echo -e "Now we need to edit some files in order to make your screenpad work on NVIDIA mode. Do you have the nvidia drivers installed and want to make them work with the screenpad? (Yes RECOMMENDED), (No) if you explicitly do not want NVIDIA support."
+echo -e "\nFirst off we need to set the display adapter names to the correct ones of your screenpad (you can skip this if your model is the UX580GE)."
+
+echo "Do you know your adapter names and want to change them now? (You can also do this after installation, the config file is ~/.screenpad/config.json) If you are not sure about the editor, choose Nano."
+select yn in "Vim" "Nano" "No"; do
+    case $yn in
+        Vim ) vim config.json; break;;
+	Nano ) nano config.json; break;;
+        No ) echo -e "Continuing installation. Please edit the config file later (look for instructions on my GitHub page https://github.com/SinanAkkoyun/ScreenpadLinux"; exit;;
+    esac
+done
+
+echo -e "\nYou can always change the config and try out which ones do work and which ones don't. Keep in mind that when your device is in hybrid or nvidia mode your adapter name changes! Look at the GitHub page for further instructions: https://github.com/SinanAkkoyun/ScreenpadLinux"
+
+
+echo -e "\nNow we need to edit some files in order to make your screenpad work on NVIDIA mode. Do you have the nvidia drivers installed and want to make them work with the screenpad? (Yes RECOMMENDED), (No) if you explicitly do not want NVIDIA support."
 select yn in "Yes" "No"; do
     case $yn in
         Yes )
