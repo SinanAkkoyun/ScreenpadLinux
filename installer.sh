@@ -42,6 +42,9 @@ echo -e "\nDone! Your scripts are now in place."
 
 cd ~/.screenpad/ScreenpadLinux
 
+echo -e "Editing files to match your user name..."
+sed -i "s/youruser/$theuser/g" *
+
 echo -e "Setting permissions to executable..."
 chmod a+x *
 echo -e "Done!"
