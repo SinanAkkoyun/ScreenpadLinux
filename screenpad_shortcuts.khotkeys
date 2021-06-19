@@ -23,7 +23,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_1Actions0]
-CommandURL=~/.screenpad/ScreenpadLinux/toggle_screenpad.sh &> ~/.screenpad/toggle_output.log
+CommandURL=~/.screenpad/ScreenpadLinux/toggle_screenpad.sh
 Type=COMMAND_URL
 
 [Data_1_1Conditions]
