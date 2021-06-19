@@ -75,7 +75,7 @@ echo -e "Do you wish to install your shortcuts automatically? (Only KDE)"
 select yn in "Yes" "No"; do
 	case $yn in
 	Yes )
-		cp ~/-config/khotkeysrc ~/.screenpad/backup_khotkeysrc
+		cp ~/.config/khotkeysrc ~/.screenpad/backup_khotkeysrc
 		sed -i 's/,screenpad_shortcuts//' ~/.config/khotkeysrc
 		sudo rm -f /usr/share/khotkeys/screenpad_shortcuts.khotkeys
 		sudo cp ScreenpadLinux/screenpad_shortcuts.khotkeys /usr/share/khotkeys/
@@ -88,7 +88,7 @@ select yn in "Yes" "No"; do
 done
 echo -e "I did not get this to work, so please manually import the file."
 
-echo -e "\nCool! Last step is to create a new systemd service that gives you permissions to access the screen brightness settings."
+echo -e "\nCool! Last step is to create a new systemd service that gives you permissions to access the screen brightness settings..."
 
 echo -e "Updating systemd service file screenpad.service..."
 sudo systemctl stop screenpad.service
