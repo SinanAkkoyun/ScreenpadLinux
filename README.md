@@ -1,91 +1,75 @@
 # ASUS Screenpad on Linux
 My solution to make the Screenpad work! (UX580GE and probably all models with trackpad screenpad)
 
-# TODO: /home/sinan/.screenpad insteal of /opt/screenpad/
 # TODO: Add model support and lookup table
 
 # Installation
 
-DISCLAIMER
-If something does not work, join this Discord server: https://www.discord.gg/5uXFfsV
-When my script does not work for your model, it can very likely just be because of my scripts targeting the wrong display adapter name, just take a look in the Discord Server under useful-links!
-It enabled me to even write this
-
-INSTALL BEFOREHAND:
-https://github.com/Plippo/asus-wmi-screenpad
-Also install NVIDIA drivers and optimus-manager
-
-# Compatibility test
-In order to test compatibility AFTER installing asus-wmi-screenpad, run this:
+Run the following line in your terminal and install your Screenpad!
 ```bash
-echo 255 | sudo tee '/sys/class/leds/asus::screenpad/brightness'
+wget https://raw.githubusercontent.com/SinanAkkoyun/ScreenpadLinux/main/installer.sh && chmod +x installer.sh && ./installer.sh
+```
+Make sure to reboot after installation.
+
+# Finding out adapter names (necessary if model is not UX580GE)
+You probably realized that after installation and a reboot the screenpad does not turn on.
+It is recommended that you do this *after* installation.
+It is time to edit the configuration to make it work!
+
+Open ~/.screenpad/ScreenpadLinux/config.json with your favorite text editor, it should look like this:
+```json
+{
+"intel": "HDMI-1-0",
+"nvidia": "HDMI-0"
+}
 ```
 
-Does your screenpads backlight light up after a few seconds (for me, my screen was black but my backlight lit up)? If yes, AWESOME, you are on the right track! If not, my scripts may not work for you, look for the discord linked below.
-
-# Put scripts into place
-
-1. Create a new directory wherever you like (mine is ~/github/)
-2. Clone this repo there:
+Do you see HDMI-1-0 and HDMI-0? You have to change them according to your own system.
+In order to find out which names do correlate to what, you first need to change your system to *hybrid* or *integrated*.
 ```bash
-git clone https://github.com/SinanAkkoyun/ScreenpadLinux
-cp ScreenpadLinux
+optimus-manager --switch hybrid #or integrated
 ```
-3. Create a new directory for your new scripts but stay in the current directory:
+Now disable your screenpad. Run this script in your terminal:
 ```bash
-sudo mkdir /opt/screenpad
+~/.screenpad/ScreenpadLinux/disable_screenpad.sh
 ```
 
-Copy everything into /opt/screenpad and give proper permissions:
+Now, either take a look in your GUI display settings or run
 ```bash
-sudo cp * /opt/screenpad/
-sudo chmod 755 /opt/screenpad/*
+xrandr --query | grep " connected"
+```
+You should only see your main monitor. Note that name, because **this is the one we will be ignoring**.
+
+Now, enable the screenpad
+```bash
+~/.screenpad/ScreenpadLinux/enable_screenpad.sh
+```
+And wait until it has finished. Now run xrandr again
+```bash
+xrandr --query | grep " connected"
+```
+**Note down the new connection. This is the intel one**
+
+Repeat this process with Optimus set to NVIDIA
+```bash
+optimus-manager --switch nvidia
+#wait
+~/.screenpad/ScreenpadLinux/enable_screenpad.sh
+#wait
+xrandr --query | grep " connected"
 ```
 
-Add the following line to /usr/share/X11/xorg.conf.d/10-nvidia*.conf after Driver "nvidia" (replace the old Option line):
-```bash
-Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoEdidDFPMaxSizeCheck,NoVertRefreshCheck,NoWidthAlignmentCheck,NoEdidMaxPClkCheck,NoMaxSizeCheck"
+**Open ~/.screenpad/ScreenpadLinux/config.json and replace the adapter names to the ones you just noted:**
+```json
+{
+"intel": "youradaptername1",
+"nvidia": "youradaptername2"
+}
 ```
 
-This is my /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf for reference:
-```bash
-Section "OutputClass"
-Identifier "nvidia"
-MatchDriver "nvidia-drm"
-Driver "nvidia"
-Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoEdidDFPMaxSizeCheck,NoVertRefreshCheck,NoWidthAlignmentCheck,NoEdidMaxPClkCheck,NoMaxSizeCheck"
-ModulePath "/usr/lib/nvidia/xorg"
-ModulePath "/usr/lib/xorg/modules"
-EndSection
-```
+You are done! Now go ahead and press the shortcut to activate the Screenpad and enjoy! (Shift+ToggleTouchpad / SHIFT+Fn+F6)
 
-# Autostart
-Now, add /opt/screenpad/startup_screenpad_service.sh to your Autostart of your distro.
-Put /opt/screenpad/startup_screenpad_service.sh to "after log in"
-And /opt/screenpad/disable_screenpad.sh to "after log out"
-
-I will show the process for KDE:
-![image](https://user-images.githubusercontent.com/43215895/122564947-746bd480-d035-11eb-8bf7-cb3e6b79b8db.png)
-Choose /opt/screenpad/startup_screenpad_service.sh
-Do the same but on log out with /opt/screenpad/disable_screenpad.sh
-Your configuration should look like this:
-![image](https://user-images.githubusercontent.com/43215895/122565203-bbf26080-d035-11eb-9a32-c2ae254025f5.png)
-
-# Shortcuts
-Add these shortcuts to your system but do not activate them until the last step!:
-> shift+MonitorBrightnessUp  ->  /opt/screenpad/add_screenpad_brightness.sh +12
-> shift+MonitorBrightnessDown -> /opt/screenpad/add_screenpad_brightness.sh -12
-> shift+ToggleTouchpad     ->    /opt/screenpad/toggle_screenpad.sh
-
-I put them into a custom group called "Screenpad" in KDE:
-![image](https://user-images.githubusercontent.com/43215895/122568580-6fa91f80-d039-11eb-8379-0e2c1361b0dd.png)
-
-# Reboot
-
-Now reboot your system.
-
-# NVIDIA Optimus
-This script automagically detects if the NVIDIA or hybrid or integrated is enabled!
+Does it work? Great! Now do the final step and create an issue here on github, put as the title "Data", write me your laptop model number and paste your config.json here! If you do this I can also automate the process you just did! Thank you :)
 
 # Start Screenpad
 
