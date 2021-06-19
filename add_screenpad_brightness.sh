@@ -3,8 +3,6 @@
 # $1 equals to the first argument (12 equals 5%, range = 0-255)
 incr=$1
 
-# touch /opt/screenpad/screenpad_brightness
-# chmod 777 /opt/screenpad/screenpad_brightness
 bright=$(cat /opt/screenpad/screenpad_brightness)
 if [ -z "$bright" ]
 then
@@ -31,12 +29,12 @@ fi
 
 echo $bright
 
-ison=$(cat /opt/screenpad/screenpad_on)
+ison=$(cat ~/.screenpad/screenpad_on)
 if [ -z "$ison" ]
 then
 ison=false
 fi
 
 if [ "$ison" = true ]; then
-	/opt/screenpad/set_screenpad_brightness.sh $bright
+	~/.screenpad/set_screenpad_brightness.sh $bright
 fi

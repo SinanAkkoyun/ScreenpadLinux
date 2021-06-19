@@ -13,10 +13,10 @@ fi
 
 
 echo -e "Welcome to the Screenpad for Linux installer!"
-echo -e "Please make sure you installed asus-wmi-screenpad beforehand."
-echo -e "https://github.com/Plippo/asus-wmi-screenpad"
+echo -e "Please make sure you installed asus-wmi-screenpad and jq beforehand."
+echo -e "https://github.com/Plippo/asus-wmi-screenpad AND jq"
 
-echo -e "\nDid you install asus-wmi-screenpad?"
+echo -e "\nDid you install asus-wmi-screenpad and jq?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) echo "Proceeding with installaton"; break;;
