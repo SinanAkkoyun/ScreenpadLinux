@@ -60,6 +60,16 @@ done
 
 echo -e "\nCool! Last step is to create a new systemd service that gives you permissions to access the screen brightness settings."
 
+echo -e "Updating systemd service file screenpad.service..."
+sudo systemctl stop screenpad.service
+sudo rm -f /etc/systemd/system/screenpad.service
+sudo cp screenpad.service /etc/systemd/system/
+
+echo -e "Reloading systemctl daemon"
+sudo systemctl daemon-reload
+sudo systemctl start screenpad.service
+sudo systemctl enable screenpad.service
+
 echo -e "Everything set! In order to actiavte your screenpad, press SHIFT+FN+F6 (Shift + Toggle Touchpad)! To change brightness, you can press SHIFT+FN+F4/F5 (Shift + brightness up/down). But first, you need to reboot in order to set all changes."
 
 echo -e "Do you want to reboot?"

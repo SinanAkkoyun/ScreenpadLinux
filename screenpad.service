@@ -1,0 +1,12 @@
+[Unit]
+Description=Screenpad in Linux
+
+[Service]
+Type=oneshot
+ExecStart=~/.screenpad/startup_screenpad_service.sh
+RemainAfterExit=true
+ExecStop=~/.screenpad/disable_screenpad.sh
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
