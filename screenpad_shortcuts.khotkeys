@@ -23,7 +23,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_1Actions0]
-CommandURL=~/.screenpad/screenpad/toggle_screenpad.sh &> ~/.screenpad/toggle_output.log
+CommandURL=~/.screenpad/ScreenpadLinux/toggle_screenpad.sh &> ~/.screenpad/toggle_output.log
 Type=COMMAND_URL
 
 [Data_1_1Conditions]
@@ -49,7 +49,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_2Actions0]
-CommandURL=~/.screenpad/add_screenpad_brightness.sh +12
+CommandURL=~/.screenpad/ScreenpadLinux/add_screenpad_brightness.sh +12
 Type=COMMAND_URL
 
 [Data_1_2Conditions]
@@ -75,7 +75,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_3Actions0]
-CommandURL=~/.screenpad/add_screenpad_brightness.sh -12
+CommandURL=~/.screenpad/ScreenpadLinux/add_screenpad_brightness.sh -12
 Type=COMMAND_URL
 
 [Data_1_3Conditions]
