@@ -7,13 +7,13 @@ then
 fi
 
 if [ "$ison" = false ]
-then
-	~/.screenpad/enable_screenpad.sh
+theScreenpadLinux/n
+	~/.screenpad/ScreenpadLinux/enable_screenpad.sh
 fi
 
 if [ "$ison" = true ]
 then
-	~/.screenpad/disable_screenpad.sh
+	~/.screenpad/ScreenpadLinux/disable_screenpad.sh
 fi
 
 echo "Toggled to: $(cat ~/.screenpad/screenpad_on)"

@@ -11,7 +11,7 @@ git pull
 echo -e "Updating systemd service..."
 sudo systemctl stop screenpad.service
 sudo rm -f /etc/systemd/system/screenpad.service
-sudo cp screenpad.service /etc/systemd/system/
+sudo cp ScreenpadLinux/screenpad.service /etc/systemd/system/
 
 echo -e "Reloading systemctl daemon"
 sudo systemctl daemon-reload

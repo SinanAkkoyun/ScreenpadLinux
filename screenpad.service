@@ -3,9 +3,9 @@ Description=ScreenpadLinux
 
 [Service]
 Type=oneshot
-ExecStart=/home/youruser/.screenpad/startup_screenpad_service.sh
+ExecStart=/home/youruser/.screenpad/ScreenpadLinux/startup_screenpad_service.sh
 RemainAfterExit=true
-ExecStop=/home/youruser/.screenpad/disable_screenpad.sh
+ExecStop=/home/youruser/.screenpad/ScreenpadLinux/disable_screenpad.sh
 StandardOutput=journal
 
 [Install]

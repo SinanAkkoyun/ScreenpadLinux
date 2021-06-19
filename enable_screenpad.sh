@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # xrandr display adapters connected to Screenpad, adjust for your model (current model: UX580GE)
-screenpad_intel=$(jq -r .intel config.json)
-screenpad_nvidia=$(jq -r .nvidia config.json)
+screenpad_intel=$(jq -r .intel ~/.screenpad/ScreenpadLinux/config.json)
+screenpad_nvidia=$(jq -r .nvidia ~/.screenpad/ScreenpadLinux/config.json)
 
 screenpad_output=$screenpad_intel
 optimus_mode=$(optimus-manager --print-mode)
@@ -26,7 +26,7 @@ else
 fi
 
 notify-send 'Screenpad' 'Enabling Screenpad...'
-~/.screenpad/set_screenpad_brightness.sh 255
+~/.screenpad/ScreenpadLinux/set_screenpad_brightness.sh 255
 
 # Adjust and shrink as you can
 sleep 5s
