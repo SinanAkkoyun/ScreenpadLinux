@@ -1,8 +1,6 @@
 # ASUS Screenpad on Linux
 My solution to make the Screenpad work! (UX580GE and probably all models with trackpad screenpad)
 
-# TODO: Add model support and lookup table
-
 # Installation
 
 Run the following line in your terminal and install your Screenpad!
@@ -10,6 +8,17 @@ Run the following line in your terminal and install your Screenpad!
 wget https://raw.githubusercontent.com/SinanAkkoyun/ScreenpadLinux/main/installer.sh && chmod +x installer.sh && ./installer.sh
 ```
 Make sure to reboot after installation.
+
+(if you run this again, make sure to manually remove the shortkey group beforehand)
+
+# Update
+
+Go into your .screenpad/ScreenpadLinux directory and run update.sh
+```bash
+cd ~/.screenpad/ScreenpadLinux
+chmod +x update.sh
+./update.sh
+```
 
 # Finding out adapter names (necessary if model is not UX580GE)
 You probably realized that after installation and a reboot the screenpad does not turn on.
@@ -107,3 +116,7 @@ Resources and big thanks to:
 https://github.com/Plippo/asus-wmi-screenpad
 https://www.discord.gg/5uXFfsV
 https://gitlab.com/screenpad-linux/ux480f/-/blob/master/screenpad.sh
+
+
+# TODO: Add model support and lookup table
+# TODO: Remove old shortcuts
