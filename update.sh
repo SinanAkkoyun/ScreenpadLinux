@@ -18,4 +18,21 @@ sudo systemctl daemon-reload
 sudo systemctl start screenpad.service
 sudo systemctl enable screenpad.service
 
+
+echo -e "Updating shortcuts..."
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes )
+		cp ~/-config/khotkeysrc ~/.screenpad/backup_khotkeysrc
+		sed -i 's/,screenpad_shortcuts//' ~/.config/khotkeysrc
+		sudo rm -f /usr/share/khotkeys/screenpad_shortcuts.khotkeys
+		sudo cp ScreenpadLinux/screenpad_shortcuts.khotkeys /usr/share/khotkeys/
+		echo -e "NOTE: You need to remove your old shortcuts manually in the GUI."
+		break;;
+        No )
+		echo -e "Shortcuts not updated"
+		break;;
+    esac
+done
+
 echo -e "Done! Enjoy."

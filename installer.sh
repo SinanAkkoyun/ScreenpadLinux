@@ -56,7 +56,6 @@ done
 
 echo -e "\nYou can always change the config and try out which ones do work and which ones don't. Keep in mind that when your device is in hybrid or nvidia mode your adapter name changes! Look at the GitHub page for further instructions: https://github.com/SinanAkkoyun/ScreenpadLinux"
 
-
 echo -e "\nNow we need to edit some files in order to make your screenpad work on NVIDIA mode. Do you have the nvidia drivers installed and want to make them work with the screenpad? (Yes RECOMMENDED), (No) if you explicitly do not want NVIDIA support."
 select yn in "Yes" "No"; do
     case $yn in
@@ -70,6 +69,22 @@ select yn in "Yes" "No"; do
 		;;
         No ) echo -e "Keep in mind that you can not use the screenpad in NVIDIA mode."; break;;
     esac
+done
+
+echo -e "Do you wish to install your shortcuts automatically? (Only KDE)"
+select yn in "Yes" "No"; do
+	case $yn in
+	Yes )
+		cp ~/-config/khotkeysrc ~/.screenpad/backup_khotkeysrc
+		sed -i 's/,screenpad_shortcuts//' ~/.config/khotkeysrc
+		sudo rm -f /usr/share/khotkeys/screenpad_shortcuts.khotkeys
+		sudo cp ScreenpadLinux/screenpad_shortcuts.khotkeys /usr/share/khotkeys/
+		echo -e "NOTE: You need to remove your old shortcuts manually in the GUI."
+		break;;
+	No )
+		echo -e "Shortcuts not updated"
+		break;;
+	esac
 done
 
 echo -e "\nCool! Last step is to create a new systemd service that gives you permissions to access the screen brightness settings."
