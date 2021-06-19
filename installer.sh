@@ -33,6 +33,9 @@ echo -e "It's name is .screenpad inside your home directory. I will create it."
 mkdir ~/.screenpad
 cd ~/.screenpad
 
+rm -f -r backup_update
+cp * backup_update/
+
 echo -e "\nNow I am going to clone all scripts into here. I will make a backup of the old repo."
 rm -f -r backup_all
 mv ScreenpadLinux backup_all
