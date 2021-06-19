@@ -86,6 +86,7 @@ select yn in "Yes" "No"; do
 		break;;
 	esac
 done
+echo -e "I did not get this to work, so please manually import the file."
 
 echo -e "\nCool! Last step is to create a new systemd service that gives you permissions to access the screen brightness settings."
 
