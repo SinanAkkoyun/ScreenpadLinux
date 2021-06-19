@@ -50,7 +50,7 @@ select yn in "Vim" "Nano" "No"; do
     case $yn in
         Vim ) vim config.json; break;;
 	Nano ) nano config.json; break;;
-        No ) echo -e "Continuing installation. Please edit the config file later (look for instructions on my GitHub page https://github.com/SinanAkkoyun/ScreenpadLinux"; exit;;
+        No ) echo -e "Continuing installation. Please edit the config file later (look for instructions on my GitHub page https://github.com/SinanAkkoyun/ScreenpadLinux"; break;;
     esac
 done
 
