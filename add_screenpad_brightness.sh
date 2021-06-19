@@ -1,9 +1,11 @@
 #!/bin/bash
 
+touch /home/youruser/.screenpad/screenpad_brightness
+
 # $1 equals to the first argument (12 equals 5%, range = 0-255)
 incr=$1
 
-bright=$(cat ~/.screenpad/screenpad_brightness)
+bright=$(cat /home/youruser/.screenpad/screenpad_brightness)
 if [ -z "$bright" ]
 then
 	bright="255"
@@ -29,12 +31,12 @@ fi
 
 echo $bright
 
-ison=$(cat ~/.screenpad/screenpad_on)
+ison=$(cat /home/youruser/.screenpad/screenpad_on)
 if [ -z "$ison" ]
 then
 ison=false
 fi
 
 if [ "$ison" = true ]; then
-	~/.screenpad/ScreenpadLinux/set_screenpad_brightness.sh $bright
+	/home/youruser/.screenpad/ScreenpadLinux/set_screenpad_brightness.sh $bright
 fi

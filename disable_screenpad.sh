@@ -1,10 +1,12 @@
 #!/bin/sh
 
-~/.screenpad/ScreenpadLinux/set_screenpad_brightness.sh 0
+touch /home/youruser/.screenpad/screenpad_on
+
+/home/youruser/.screenpad/ScreenpadLinux/set_screenpad_brightness.sh 0
 
 # xrandr display adapters connected to Screenpad, adjust for your model (current model: UX580GE)
-screenpad_intel=$(jq -r .intel ~/.screenpad/ScreenpadLinux/config.json)
-screenpad_nvidia=$(jq -r .nvidia ~/.screenpad/ScreenpadLinux/config.json)
+screenpad_intel=$(jq -r .intel /home/youruser/.screenpad/ScreenpadLinux/config.json)
+screenpad_nvidia=$(jq -r .nvidia /home/youruser/.screenpad/ScreenpadLinux/config.json)
 
 screenpad_output=$screenpad_intel
 optimus_mode=$(optimus-manager --print-mode)
@@ -29,5 +31,5 @@ else
 fi
 
 xrandr --output "$screenpad_output" --off
-echo "false" > ~/.screenpad/screenpad_on
+echo "false" > /home/youruser/.screenpad/screenpad_on
 notify-send 'Screenpad' 'Disabled Screenpad'
