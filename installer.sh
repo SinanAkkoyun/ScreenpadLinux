@@ -2,6 +2,9 @@
 
 echo -e "Checking if user is running as root..."
 
+theuser=$(whoami)
+echo "Detected user: $theuser"
+
 if [ "$EUID" -ne 0 ]
 then
 	echo "Running as normal usr, continuing..."
@@ -78,6 +81,7 @@ select yn in "Yes" "No"; do
 		cp ~/.config/khotkeysrc ~/.screenpad/backup_khotkeysrc
 		sed -i 's/,screenpad_shortcuts//' ~/.config/khotkeysrc
 		sudo rm -f /usr/share/khotkeys/screenpad_shortcuts.khotkeys
+		sed -i "s/youruser/$theuser/g" screenpad_shortcuts.khotkeys
 		sudo cp ScreenpadLinux/screenpad_shortcuts.khotkeys /usr/share/khotkeys/
 		echo -e "NOTE: You need to remove your old shortcuts manually in the GUI."
 		break;;
@@ -93,8 +97,6 @@ echo -e "\nCool! Last step is to create a new systemd service that gives you per
 echo -e "Updating systemd service file screenpad.service..."
 sudo systemctl stop screenpad.service
 sudo rm -f /etc/systemd/system/screenpad.service
-theuser=$(whoami)
-echo "Detected user: $theuser"
 sed -i "s/youruser/$theuser/g" screenpad.service
 sudo cp screenpad.service /etc/systemd/system/
 

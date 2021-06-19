@@ -16,14 +16,14 @@ ConditionsCount=0
 [Data_1_1]
 Comment=Comment
 Enabled=true
-Name=Toggle Screenpad
+Name=ToggleScreenpad
 Type=SIMPLE_ACTION_DATA
 
 [Data_1_1Actions]
 ActionsCount=1
 
 [Data_1_1Actions0]
-CommandURL=~/.screenpad/ScreenpadLinux/toggle_screenpad.sh
+CommandURL=/home/youruser/.screenpad/ScreenpadLinux/toggle_screenpad.sh
 Type=COMMAND_URL
 
 [Data_1_1Conditions]
@@ -37,19 +37,19 @@ TriggersCount=1
 [Data_1_1Triggers0]
 Key=Shift+Touchpad Toggle
 Type=SHORTCUT
-Uuid={8feb56f0-875f-47da-8a6c-13a4aa343e2d}
+Uuid={e9b5f20b-784c-424e-a1ac-41f4531e10aa}
 
 [Data_1_2]
 Comment=Comment
 Enabled=true
-Name=Add Screenpad Brightness
+Name=AddBrightness
 Type=SIMPLE_ACTION_DATA
 
 [Data_1_2Actions]
 ActionsCount=1
 
 [Data_1_2Actions0]
-CommandURL=~/.screenpad/ScreenpadLinux/add_screenpad_brightness.sh +12
+CommandURL=/home/youruser/.screenpad/ScreenpadLinux/add_screenpad_brightness.sh +12
 Type=COMMAND_URL
 
 [Data_1_2Conditions]
@@ -63,19 +63,19 @@ TriggersCount=1
 [Data_1_2Triggers0]
 Key=Shift+Monitor Brightness Up
 Type=SHORTCUT
-Uuid={d28a6066-411b-49f4-9301-ce37e7e9f14f}
+Uuid={c1523850-390c-4f2a-9776-7532c40027a1}
 
 [Data_1_3]
 Comment=Comment
 Enabled=true
-Name=Rem Screenpad Brightness
+Name=RemBrightness
 Type=SIMPLE_ACTION_DATA
 
 [Data_1_3Actions]
 ActionsCount=1
 
 [Data_1_3Actions0]
-CommandURL=~/.screenpad/ScreenpadLinux/add_screenpad_brightness.sh -12
+CommandURL=/home/youruser/.screenpad/ScreenpadLinux/add_screenpad_brightness.sh -12
 Type=COMMAND_URL
 
 [Data_1_3Conditions]
@@ -89,7 +89,7 @@ TriggersCount=1
 [Data_1_3Triggers0]
 Key=Shift+Monitor Brightness Down
 Type=SHORTCUT
-Uuid={08791986-7c1c-431c-b42b-7d185623e4d5}
+Uuid={c7fd87b0-3cab-4c39-bd6a-7c43f104a568}
 
 [Main]
 AllowMerge=true
