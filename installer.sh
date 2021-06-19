@@ -58,6 +58,14 @@ select yn in "Yes" "No"; do
     esac
 done
 
-echo -e "\nNow we need to edit some files..."
+echo -e "\nCool! Last step is to create a new systemd service that gives you permissions to access the screen brightness settings."
 
+echo -e "Everything set! In order to actiavte your screenpad, press SHIFT+FN+F6 (Shift + Toggle Touchpad)! To change brightness, you can press SHIFT+FN+F4/F5 (Shift + brightness up/down). But first, you need to reboot in order to set all changes."
 
+echo -e "Do you want to reboot?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sudo reboot; break;;
+        No ) echo -e "Please reboot your system manually before trying to access the screenpad."; exit;;
+    esac
+done
