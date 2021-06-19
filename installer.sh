@@ -82,7 +82,7 @@ select yn in "Yes" "No"; do
 		sed -i 's/,screenpad_shortcuts//' ~/.config/khotkeysrc
 		sudo rm -f /usr/share/khotkeys/screenpad_shortcuts.khotkeys
 		sed -i "s/youruser/$theuser/g" screenpad_shortcuts.khotkeys
-		sudo cp ScreenpadLinux/screenpad_shortcuts.khotkeys /usr/share/khotkeys/
+		sudo cp screenpad_shortcuts.khotkeys /usr/share/khotkeys/
 		echo -e "NOTE: You need to remove your old shortcuts manually in the GUI."
 		break;;
 	No )
